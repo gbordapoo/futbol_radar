@@ -100,8 +100,7 @@ if uploaded_file:
         # Add title and endnote text with default font
         ax.text(0.01, 0.65, select_player1, fontsize=18, color=color_1, ha='left', va='center')
         ax.text(0.99, 0.65, select_player2, fontsize=18, color=color_2, ha='right', va='center')
-        #ax.text(0.99, 0.5, 'Viz by: @gbordapoo / @performancefield', fontsize=12,
-                ha='right', va='center')
+        #ax.text(0.99, 0.5, 'Viz by: @gbordapoo / @performancefield', fontsize=12, ha='right', va='center')
 
         # Save the figure to a BytesIO object as PNG
         buf = BytesIO()
