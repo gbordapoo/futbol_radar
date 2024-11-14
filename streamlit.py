@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 from PIL import Image
 from io import BytesIO
-from mplsoccer import Radar, FontManager, grid
+from mplsoccer import Radar, grid
 
 # Set page config for Streamlit
 st.set_page_config(page_title='Performance Field - Radar',
@@ -80,18 +80,6 @@ if uploaded_file:
         # Initialize radar chart
         radar = Radar(params, low, high, num_rings=4, ring_width=1, center_circle_radius=1)
 
-        # Load fonts for text styling
-        URL1 = 'https://raw.githubusercontent.com/googlefonts/SourceSerifProGFVersion/main/fonts/SourceSerifPro-Regular.ttf'
-        serif_regular = FontManager(URL1)
-        URL2 = 'https://raw.githubusercontent.com/googlefonts/SourceSerifProGFVersion/main/fonts/SourceSerifPro-ExtraLight.ttf'
-        serif_extra_light = FontManager(URL2)
-        URL3 = 'https://raw.githubusercontent.com/google/fonts/main/ofl/rubikmonoone/RubikMonoOne-Regular.ttf'
-        rubik_regular = FontManager(URL3)
-        URL4 = 'https://raw.githubusercontent.com/google/fonts/main/src/hinted/Roboto-Thin.ttf'
-        robotto_thin = FontManager(URL4)
-        URL5 = 'https://raw.githubusercontent.com/google/fonts/main/apache/robotoslab/RobotoSlab%5Bwght%5D.ttf'
-        robotto_bold = FontManager(URL5)
-
         # Create the plot
         fig, axs = grid(figheight=14, grid_height=0.915, title_height=0.06, endnote_height=0.025)
         color_1 = 'red'
@@ -104,17 +92,15 @@ if uploaded_file:
                                                 kwargs_radar={'facecolor': color_1, 'alpha': 0.6},
                                                 kwargs_compare={'facecolor': color_2, 'alpha': 0.6})
 
-        # Draw range and parameter labels
-        radar.draw_range_labels(ax=axs['radar'], fontsize=25, fontproperties=robotto_thin.prop)
-        radar.draw_param_labels(ax=axs['radar'], fontsize=25, fontproperties=robotto_thin.prop)
+        # Draw range and parameter labels with default font
+        radar.draw_range_labels(ax=axs['radar'], fontsize=25)
+        radar.draw_param_labels(ax=axs['radar'], fontsize=25)
 
         # Add title and endnote text
-        axs['title'].text(0.01, 0.65, select_player1, fontsize=25, color=color_1, 
-                          fontproperties=robotto_bold.prop, ha='left', va='center')
-        axs['title'].text(0.99, 0.65, select_player2, fontsize=25, color=color_2,
-                          fontproperties=robotto_bold.prop, ha='right', va='center')
+        axs['title'].text(0.01, 0.65, select_player1, fontsize=25, color=color_1, ha='left', va='center')
+        axs['title'].text(0.99, 0.65, select_player2, fontsize=25, color=color_2, ha='right', va='center')
         axs['endnote'].text(0.99, 0.5, 'Viz by: @gbordapoo / @performancefield', fontsize=15,
-                            fontproperties=robotto_thin.prop, ha='right', va='center')
+                            ha='right', va='center')
 
         # Save the figure to a BytesIO object as PNG
         buf = BytesIO()
