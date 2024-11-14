@@ -13,6 +13,14 @@ from io import BytesIO
 from mplsoccer import Radar
 import hmac
 
+# Add custom CSS to hide the GitHub icon
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 
 def check_password():
     """Returns `True` if the user had a correct password."""
