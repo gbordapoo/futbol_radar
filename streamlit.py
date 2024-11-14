@@ -45,7 +45,9 @@ if uploaded_file:
         
         # Assuming you have a dataframe named 'df'
         # Add a new row with the average values
-        average_row = df.mean(axis=0)
+        #average_row = df.mean(axis=0)
+        average_row = df.select_dtypes(include=['number']).mean(axis=0)
+
         # Set the 'Jugador' column of the average row to 'Promedio'
         average_row['Jugador'] = 'Promedio'
         df = df.append(average_row, ignore_index=True)
