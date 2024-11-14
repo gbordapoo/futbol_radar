@@ -98,8 +98,8 @@ if uploaded_file:
         radar.draw_param_labels(ax=ax, fontsize=15)
 
         # Add title and endnote text with default font
-        ax.text(-15.05, 1.75, select_player1, fontsize=18, color=color_1, ha='left', va='center')
-        ax.text(15.95, 1.75, select_player2, fontsize=18, color=color_2, ha='right', va='center')
+        ax.text(-10.05, 1.75, select_player1, fontsize=18, color=color_1, ha='left', va='center')
+        ax.text(10.95, 1.75, select_player2, fontsize=18, color=color_2, ha='right', va='center')
         #ax.text(0.99, 0.5, 'Viz by: @gbordapoo / @performancefield', fontsize=12, ha='right', va='center')
 
         # Save the figure to a BytesIO object as PNG
