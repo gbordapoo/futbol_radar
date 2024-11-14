@@ -94,7 +94,7 @@ if uploaded_file:
                                                 kwargs_compare={'facecolor': color_2, 'alpha': 0.6})
 
         # Draw range and parameter labels with default font
-        radar.draw_range_labels(ax=ax, fontsize=15)  # Set a readable font size
+        radar.draw_range_labels(ax=ax, fontsize=12)  # Set a readable font size
         radar.draw_param_labels(ax=ax, fontsize=15)
 
         # Add title and endnote text with default font
