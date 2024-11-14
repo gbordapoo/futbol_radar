@@ -59,15 +59,6 @@ st.set_page_config(page_title='Performance Field - Radar',
                    page_icon="flag_chile",
                    layout='wide')
 
-# Hide the hamburger menu (including GitHub logo)
-st.markdown("""
-    <style>
-        .css-1g3zvsi {display: none;}  /* Hides the hamburger menu (three dots) */
-        .css-1kyxreq {display: none;}  /* Hides the GitHub logo */
-    </style>
-    """, unsafe_allow_html=True)
-
-
 # Upload Excel file
 uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
 
