@@ -94,18 +94,18 @@ if uploaded_file:
                                                 kwargs_compare={'facecolor': color_2, 'alpha': 0.6})
 
         # Draw range and parameter labels with default font
-        radar.draw_range_labels(ax=ax, fontsize=20)  # Reduced font size for better fit
-        radar.draw_param_labels(ax=ax, fontsize=20)
+        radar.draw_range_labels(ax=ax, fontsize=15)  # Set a readable font size
+        radar.draw_param_labels(ax=ax, fontsize=15)
 
         # Add title and endnote text with default font
-        ax.text(0.01, 0.65, select_player1, fontsize=20, color=color_1, ha='left', va='center')
-        ax.text(0.99, 0.65, select_player2, fontsize=20, color=color_2, ha='right', va='center')
+        ax.text(0.01, 0.65, select_player1, fontsize=18, color=color_1, ha='left', va='center')
+        ax.text(0.99, 0.65, select_player2, fontsize=18, color=color_2, ha='right', va='center')
         ax.text(0.99, 0.5, 'Viz by: @gbordapoo / @performancefield', fontsize=12,
                 ha='right', va='center')
 
         # Save the figure to a BytesIO object as PNG
         buf = BytesIO()
-        fig.savefig(buf, format='png')
+        fig.savefig(buf, format='png', dpi=300)
         buf.seek(0)  # Reset the buffer to the beginning
 
         # Display the radar chart image
