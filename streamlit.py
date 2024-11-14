@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 from PIL import Image
 from io import BytesIO
-from mplsoccer import Radar, grid
+from mplsoccer import Radar
 
 # Set page config for Streamlit
 st.set_page_config(page_title='Performance Field - Radar',
@@ -80,27 +80,28 @@ if uploaded_file:
         # Initialize radar chart
         radar = Radar(params, low, high, num_rings=4, ring_width=1, center_circle_radius=1)
 
-        # Create the plot
-        fig, axs = grid(figheight=14, grid_height=0.915, title_height=0.06, endnote_height=0.025)
+        # Create the plot with simplified layout
+        fig, ax = plt.subplots(figsize=(14, 10))  # Adjust the figure size directly without grid
+
         color_1 = 'red'
         color_2 = 'blue'
 
         # Plot radar chart
-        radar.setup_axis(ax=axs['radar'])
-        radar.draw_circles(ax=axs['radar'], facecolor='white', edgecolor='gray')
-        radar_output = radar.draw_radar_compare(player1_values, player2_values, ax=axs['radar'],
+        radar.setup_axis(ax=ax)
+        radar.draw_circles(ax=ax, facecolor='white', edgecolor='gray')
+        radar_output = radar.draw_radar_compare(player1_values, player2_values, ax=ax,
                                                 kwargs_radar={'facecolor': color_1, 'alpha': 0.6},
                                                 kwargs_compare={'facecolor': color_2, 'alpha': 0.6})
 
         # Draw range and parameter labels with default font
-        radar.draw_range_labels(ax=axs['radar'], fontsize=25)
-        radar.draw_param_labels(ax=axs['radar'], fontsize=25)
+        radar.draw_range_labels(ax=ax, fontsize=25)
+        radar.draw_param_labels(ax=ax, fontsize=25)
 
         # Add title and endnote text
-        axs['title'].text(0.01, 0.65, select_player1, fontsize=25, color=color_1, ha='left', va='center')
-        axs['title'].text(0.99, 0.65, select_player2, fontsize=25, color=color_2, ha='right', va='center')
-        axs['endnote'].text(0.99, 0.5, 'Viz by: @gbordapoo / @performancefield', fontsize=15,
-                            ha='right', va='center')
+        ax.text(0.01, 0.65, select_player1, fontsize=25, color=color_1, ha='left', va='center')
+        ax.text(0.99, 0.65, select_player2, fontsize=25, color=color_2, ha='right', va='center')
+        ax.text(0.99, 0.5, 'Viz by: @gbordapoo / @performancefield', fontsize=15,
+                ha='right', va='center')
 
         # Save the figure to a BytesIO object as PNG
         buf = BytesIO()
