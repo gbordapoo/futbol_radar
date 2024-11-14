@@ -14,6 +14,10 @@ from mplsoccer import Radar
 import hmac
 
 
+#MainMenu {
+  visibility: hidden;
+}
+
 def check_password():
     """Returns `True` if the user had a correct password."""
 
